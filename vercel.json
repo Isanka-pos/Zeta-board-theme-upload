@@ -4,11 +4,11 @@
   "installCommand": "",
   "outputDirectory": "public",
   "functions": {
-    "api/wallpapers.js": { "includeFiles": "public/w/**" }
+    "api/wallpapers.js": { "includeFiles": "public/files/**" }
   },
   "headers": [
     {
-      "source": "/w/(.*)",
+      "source": "/files/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]

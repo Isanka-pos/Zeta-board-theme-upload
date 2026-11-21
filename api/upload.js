@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     const slug = String(b.name || "wallpaper").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "wallpaper";
     const id = slug + "-" + Math.random().toString(36).slice(2, 6);
     if (!b.full || !b.thumb) return res.status(400).send('{"error":"Missing image"}');
-    const base = dir() + "public/w/" + cat + "/" + id;
+    const base = dir() + "public/files/" + cat + "/" + id;
     await commit([
       { path: base + ".jpg", base64: b.full },
       { path: base + "_t.jpg", base64: b.thumb },

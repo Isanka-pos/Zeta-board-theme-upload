@@ -3,7 +3,7 @@
 Add wallpapers from a web page: `https://YOUR-PROJECT.vercel.app/admin`
 
 How it works: the page shrinks the picture in your browser, sends it to `/api/upload`, which saves it
-into this GitHub repo (`public/w/<Category>/`). Vercel then redeploys by itself (about 1 minute) and
+into this GitHub repo (`public/files/<Category>/`). Vercel then redeploys by itself (about 1 minute) and
 the app list (`/api/wallpapers`) shows it. Vercel's disk is read-only, so saving through GitHub is the way.
 
 ## One-time setup

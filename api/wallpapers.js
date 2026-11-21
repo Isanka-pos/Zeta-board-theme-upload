@@ -25,7 +25,7 @@ function pretty(id) {
 }
 
 function list() {
-  const root = path.join(process.cwd(), "public", "w");
+  const root = path.join(process.cwd(), "public", "files");
   const items = [];
   let cats = [];
   try { cats = fs.readdirSync(root); } catch (e) { return items; }
@@ -42,8 +42,8 @@ function list() {
       const enc = encodeURIComponent(cat);
       items.push({
         id, name: pretty(id), category: cat,
-        thumb: "/w/" + enc + "/" + id + "_t.jpg",
-        full: "/w/" + enc + "/" + id + ".jpg",
+        thumb: "/files/" + enc + "/" + id + "_t.jpg",
+        full: "/files/" + enc + "/" + id + ".jpg",
         width: d.w, height: d.h, size,
       });
     }
