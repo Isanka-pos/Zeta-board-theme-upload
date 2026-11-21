@@ -1,23 +1,24 @@
-# Zeta Wallpaper Server (Vercel-safe)
+# Zeta Wallpaper Server (Vercel)
 
-Static files + one tiny JSON function. No database, no uploads at runtime, no npm packages,
-so it cannot fail with `500 FUNCTION_INVOCATION_FAILED` (Vercel's disk is read-only, so an
-`/admin` upload page cannot work there - wallpapers are added by pushing files instead).
+Add wallpapers from a web page: `https://YOUR-PROJECT.vercel.app/admin`
 
-## Add wallpapers
-1. Put pictures in `wallpapers/<Category>/name.jpg` (jpg / png / webp). The folder name is the category tab name.
-2. Run `pip install pillow` once, then `python3 tools/make_wallpapers.py`
-   (it makes `public/files/*` and `data/wallpapers.json`).
-3. Commit and push. Vercel redeploys by itself and the app shows the new wallpapers.
+How it works: the page shrinks the picture in your browser, sends it to `/api/upload`, which saves it
+into this GitHub repo (`public/w/<Category>/`). Vercel then redeploys by itself (about 1 minute) and
+the app list (`/api/wallpapers`) shows it. Vercel's disk is read-only, so saving through GitHub is the way.
 
-(The `wallpapers/` folder holds your originals; delete the 6 sample gradients any time, then run step 2 again.)
+## One-time setup
+1. GitHub -> Settings -> Developer settings -> Personal access tokens -> Fine-grained -> Generate:
+   only this repo, permission **Contents: Read and write**. Copy the token.
+2. Vercel project -> Settings -> Environment Variables (add all, then Redeploy):
+   - `ADMIN_PASSWORD` = a password you choose
+   - `GITHUB_TOKEN`   = the token from step 1
+   - `GITHUB_REPO`    = `Isanka-pos/Zeta-board-theme-upload` (owner/repo)
+   - `GITHUB_BRANCH`  = `main` (optional)
+   - `GITHUB_DIR`     = folder of this project inside the repo, e.g. `zeta-wallpaper-server/` (leave out if these files are at the repo root)
+3. Open `/admin`, type the password, category, pick pictures, Upload.
 
 ## Vercel settings
-- Framework Preset: **Other**
-- Root Directory: the folder that contains `vercel.json` (this folder)
-- Build Command: leave empty - Output Directory: leave empty (the `public` folder is served automatically)
-- Test: open `https://YOUR-PROJECT.vercel.app/api/wallpapers` - you must see JSON with `"items"`.
+Framework Preset: Other. Build/Output command: empty. Test `/api/wallpapers` -> JSON with "items".
 
-## Zeta Board app
-GitHub repo -> Settings -> Secrets and variables -> Actions -> Variables -> `WALLPAPER_URL` = `https://YOUR-PROJECT.vercel.app`
-(no slash at the end), then push to build a new APK.
+## App
+GitHub repo of the app -> Settings -> Secrets and variables -> Actions -> Variables -> `WALLPAPER_URL` = `https://YOUR-PROJECT.vercel.app`
