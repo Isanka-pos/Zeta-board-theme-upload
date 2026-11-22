@@ -1,0 +1,22 @@
+Zeta Board - files to copy (same folders, same names)
+
+NEW files
+  app/src/main/java/com/zeta/board/DeltaPatch.kt
+  app/src/main/java/com/zeta/board/WordSuggest.kt
+  app/src/main/java/com/zeta/board/AutoFix.kt
+  app/src/main/java/com/zeta/board/UpdateService.kt
+  app/src/main/assets/si_words.txt
+  .github/scripts/make_patches.py
+
+CHANGED files (replace)
+  CHANGELOG.txt
+  .github/workflows/build.yml
+  app/src/main/AndroidManifest.xml
+  app/src/main/java/com/zeta/board/KeyboardView.kt
+  app/src/main/java/com/zeta/board/KeyboardHost.kt
+  app/src/main/java/com/zeta/board/ZetaIME.kt
+  app/src/main/java/com/zeta/board/Singlish.kt
+  app/src/main/java/com/zeta/board/MainActivity.kt
+  app/src/main/java/com/zeta/board/Updater.kt
+  app/src/main/java/com/zeta/board/UpdateDialog.kt
+  app/src/main/java/com/zeta/board/UpdateNotify.kt
